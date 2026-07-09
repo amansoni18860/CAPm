@@ -1,0 +1,25 @@
+using { bookscapm.db.Book, bookscapm.db.Library } from '../db/schema';
+
+service LibraryService @(requires: 'authenticated-user') {
+
+    entity Books @(
+        restrict: [
+            {
+                grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'],
+                to: 'Admin'
+            },
+            {
+                grant: ['READ'],
+                to: 'Kids',
+                where: 'booksAgeGroup = $user.booksAgeGroup'
+            },
+            {
+                grant: ['READ', 'UPDATE'],
+                to: 'Librarian'
+            }
+        ]
+    ) as projection on Book;
+
+    entity Libraries as projection on Library;
+
+}

@@ -1,0 +1,11 @@
+ID,Title,Author,PublishedDate,Price,isAvailable,booksAgeGroup
+550e8400-e29b-41d4-a716-446655440000,The Silent Forest,Emily Carter,2024-01-15T00:00:00Z,19.99,true,YoungAdult
+6ba7b810-9dad-11d1-80b4-00c04fd430c8,AI for Beginners,John Smith,2023-09-10T00:00:00Z,29.50,true,Adult
+123e4567-e89b-12d3-a456-426614174000,Mystery of the Lost Key,Sarah Johnson,2022-06-21T00:00:00Z,14.75,false,Children
+f47ac10b-58cc-4372-a567-0e02b2c3d479,Data Science Essentials,Michael Brown,2025-02-05T00:00:00Z,39.99,true,Adult
+9f8c7b6a-5d4e-3f21-a987-654321fedcba,Journey to the Stars,Olivia Davis,2021-11-30T00:00:00Z,24.25,true,YoungAdult
+7c9e6679-7425-40de-944b-e07fc1f90ae7,Modern Web Development,Daniel Wilson,2024-07-18T00:00:00Z,34.99,false,Adult
+16fd2706-8baf-433b-82eb-8c7fada847da,The Art of Leadership,Sophia Martinez,2023-04-12T00:00:00Z,21.99,true,Adult
+3d594650-3436-4534-8fdd-1f4d2e6f6f5a,Cooking Made Easy,James Anderson,2022-08-25T00:00:00Z,17.49,true,YoungAdult
+c56a4180-65aa-42ec-a945-5fd21dec0538,Cybersecurity Fundamentals,Emma Thomas,2025-01-08T00:00:00Z,44.95,true,Adult
+a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11,Hidden Treasures,William Taylor,2021-05-14T00:00:00Z,12.99,false,Children

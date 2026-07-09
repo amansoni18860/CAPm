@@ -1,0 +1,259 @@
+{
+  // Application name used by XSUAA
+  // $XSAPPNAME is replaced with this value
+  "xsappname": "bookscapm",
+
+  // Each tenant gets isolated authorization data
+  "tenant-mode": "dedicated",
+
+  // General description of the security configuration
+  "description": "Security profile of called application",
+
+  // =====================================================
+  // SCOPES
+  // =====================================================
+  // Scopes are permissions.
+  // Users get scopes through role templates and role collections.
+
+  "scopes": [
+
+    {
+      // Standard SAP scope required for authentication
+      "name": "uaa.user",
+      "description": "UAA"
+    },
+
+    {
+      // Admin permission
+      "name": "$XSAPPNAME.Admin",
+      "description": "Admin role"
+    },
+
+    {
+      // Young Adult permission
+      "name": "$XSAPPNAME.YoungAdult",
+      "description": "Young Adult role"
+    },
+
+    {
+      // Adult permission
+      "name": "$XSAPPNAME.Adult",
+      "description": "Adult role"
+    },
+
+    {
+      // Children permission
+      "name": "$XSAPPNAME.Children",
+      "description": "Children role"
+    },
+
+    {
+      // Kids permission
+      "name": "$XSAPPNAME.Kids",
+      "description": "Kids role"
+    },
+
+    {
+      // Librarian permission
+      "name": "$XSAPPNAME.Librarian",
+      "description": "Librarian role"
+    }
+  ],
+
+  // =====================================================
+  // ROLE TEMPLATES
+  // =====================================================
+  // Role templates bundle scopes together.
+  // Business users are never assigned scopes directly.
+  // They are assigned role collections which contain role templates.
+
+  "role-templates": [
+
+    {
+      // Default role template
+      "name": "Token_Exchange",
+      "description": "UAA",
+
+      "scope-references": [
+        "uaa.user"
+      ]
+    },
+
+    {
+      // Admin role template
+      "name": "Admin",
+      "description": "Admin role",
+
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    },
+
+    {
+      // YoungAdult role template
+      "name": "YoungAdult",
+      "description": "Young Adult role",
+
+      "scope-references": [
+        "$XSAPPNAME.YoungAdult"
+      ]
+    },
+
+    {
+      // Adult role template
+      "name": "Adult",
+      "description": "Adult role",
+
+      "scope-references": [
+        "$XSAPPNAME.Adult"
+      ]
+    },
+
+    {
+      // Children role template
+      "name": "Children",
+      "description": "Children role",
+
+      "scope-references": [
+        "$XSAPPNAME.Children"
+      ]
+    },
+
+    {
+      // Kids role template
+      // This role uses an additional attribute
+      // booksAgeGroup
+
+      "name": "Kids",
+      "description": "Kids role",
+
+      "attribute-references": [
+        {
+          "name": "booksAgeGroup"
+        }
+      ],
+
+      "scope-references": [
+        "$XSAPPNAME.Kids"
+      ]
+    },
+
+    {
+      // Librarian role template
+      "name": "Librarian",
+      "description": "Librarian role",
+
+      "scope-references": [
+        "$XSAPPNAME.Librarian"
+      ]
+    }
+  ],
+
+  // =====================================================
+  // ROLE COLLECTIONS
+  // =====================================================
+  // Role collections are assigned to users.
+  // Users do NOT get role templates directly.
+  //
+  // User
+  //   ↓
+  // Role Collection
+  //   ↓
+  // Role Template
+  //   ↓
+  // Scope
+
+  "role-collections": [
+
+    {
+      "name": "AdminRoleCollection",
+      "description": "Admin role collection",
+
+      "role-template-references": [
+        "Admin"
+      ]
+    },
+
+    {
+      "name": "YoungAdultRoleCollection",
+      "description": "Young Adult role collection",
+
+      "role-template-references": [
+        "YoungAdult"
+      ]
+    },
+
+    {
+      "name": "AdultRoleCollection",
+      "description": "Adult role collection",
+
+      "role-template-references": [
+        "Adult"
+      ]
+    },
+
+    {
+      "name": "ChildrenRoleCollection",
+      "description": "Children role collection",
+
+      "role-template-references": [
+        "Children"
+      ]
+    },
+
+    {
+      "name": "KidsRoleCollection",
+      "description": "Kids role collection",
+
+      "role-template-references": [
+        "Kids"
+      ]
+    },
+
+    {
+      "name": "LibrarianRoleCollection",
+      "description": "Librarian role collection",
+
+      "role-template-references": [
+        "Librarian"
+      ]
+    }
+  ],
+
+  // =====================================================
+  // ATTRIBUTES
+  // =====================================================
+  // Custom user attributes stored in JWT.
+  //
+  // Example:
+  //
+  // {
+  //   "roles":["Kids"],
+  //   "booksAgeGroup":"Children"
+  // }
+  //
+  // Then in CDS:
+  //
+  // where: 'booksAgeGroup = $user.booksAgeGroup'
+  //
+  // becomes:
+  //
+  // booksAgeGroup = 'Children'
+
+  "attributes": [
+
+    {
+      // Custom attribute name
+      "name": "booksAgeGroup",
+
+      // Display description
+      "description": "Books Age Group",
+
+      // Data type
+      "value-type": "string",
+
+      // Whether it is mandatory
+      "value-required": false
+    }
+  ]
+}
