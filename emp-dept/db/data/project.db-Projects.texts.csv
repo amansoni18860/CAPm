@@ -1,0 +1,16 @@
+ID,locale,projectName,clientName,description
+p001,en,Employee Portal,,Employee self service platform
+p001,de,Mitarbeiterportal,,Mitarbeiter Self Service Plattform
+p001,fr,Portail Employe,,Plateforme libre service des employes
+
+p002,en,Payroll Automation,,Payroll automation
+p002,de,Gehaltsabrechnung Automatisierung,,Automatisierung der Gehaltsabrechnung
+p002,fr,Automatisation de la Paie,,Automatisation de la gestion de la paie
+
+p003,en,Banking Platform,HDFC Bank,Banking modernization
+p003,de,Banking Plattform,HDFC Bank,Modernisierung der Bankensysteme
+p003,fr,Plateforme Bancaire,HDFC Bank,Modernisation des systemes bancaires
+
+p004,en,AI Research,,Artificial intelligence initiatives
+p004,de,KI Forschung,,Initiativen fur kunstliche Intelligenz
+p004,fr,Recherche IA,,Initiatives d intelligence artificielle

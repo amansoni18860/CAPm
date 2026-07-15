@@ -1,0 +1,5 @@
+ID,asset_ID,serviceDate,serviceProvider,amount,remarks
+am001,asset001,2025-01-10,Dell Service Center,2500,Annual maintenance
+am002,asset001,2025-06-01,Dell Service Center,1800,Battery check
+am003,asset005,2025-02-15,Apple Care,4500,Keyboard replacement
+am004,asset005,2025-05-20,Apple Care,2200,General diagnostics

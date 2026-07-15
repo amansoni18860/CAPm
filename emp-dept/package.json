@@ -1,0 +1,61 @@
+{
+  "name": "emp-dept",
+  "version": "1.0.0",
+  "dependencies": {
+    "@sap/cds": "^9"
+  },
+  "cds": {
+    "requires": {
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "aman@company.com": {
+            "roles": [
+              "Admin"
+            ]
+          },
+          "priya@company.com": {
+            "roles": [
+              "HRManager"
+            ]
+          },
+          "rahul@company.com": {
+            "roles": [
+              "DepartmentManager"
+            ]
+          },
+          "pooja@company.com": {
+            "roles": [
+              "Employee"
+            ]
+          },
+          "vivek@company.com": {
+            "roles": [
+              "Employee"
+            ]
+          },
+          "viewer@company.com": {
+            "roles": [
+              "Viewer"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2.4",
+    "cds-plugin-ui5": "^0.17.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-employeeui": "cds watch --open capm.employee.employeeui/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "private": true,
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/employeeui"
+  ]
+}

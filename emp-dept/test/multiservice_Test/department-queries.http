@@ -1,0 +1,19 @@
+@host=http://localhost:4004/odata/v4
+
+### IT Department Employees
+GET {{host}}/Employee/Employees?$filter=department eq 'd0011111-1111-1111-1111-111111111111'
+
+### HR Department Employees
+GET {{host}}/Employee/Employees?$filter=department eq 'd0022222-2222-2222-2222-222222222222'
+
+### Finance Department Employees
+GET {{host}}/Employee/Employees?$filter=department eq 'd0033333-3333-3333-3333-333333333333'
+
+### IT Engineers
+GET {{host}}/Employee/Employees?$filter=department eq 'd0011111-1111-1111-1111-111111111111' and designation eq 'ENGINEER'
+
+### IT Employees Above 900000 Salary
+GET {{host}}/Employee/Employees?$filter=department eq 'd0011111-1111-1111-1111-111111111111' and salary gt 900000
+
+### Employees In HR Managed By Priya
+GET {{host}}/Employee/Employees?$filter=department eq 'd0022222-2222-2222-2222-222222222222' and managerId eq 'e0022222-2222-2222-2222-222222222222'

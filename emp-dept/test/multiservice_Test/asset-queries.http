@@ -1,0 +1,31 @@
+@host=http://localhost:4004/odata/v4
+
+### All Laptops
+GET {{host}}/asset/Assets?$filter=assetType eq 'LAPTOP'
+
+### All Mobiles
+GET {{host}}/asset/Assets?$filter=assetType eq 'MOBILE'
+
+### All Monitors
+GET {{host}}/asset/Assets?$filter=assetType eq 'MONITOR'
+
+### Assigned Assets
+GET {{host}}/asset/Assets?$filter=status eq 'ASSIGNED'
+
+### Available Assets
+GET {{host}}/asset/Assets?$filter=status eq 'AVAILABLE'
+
+### Lost Assets
+GET {{host}}/asset/Assets?$filter=status eq 'LOST'
+
+### Assets Under Repair
+GET {{host}}/asset/Assets?$filter=status eq 'IN_REPAIR'
+
+### Assets Assigned To Employee
+GET {{host}}/asset/Assets?$filter=assignedTo eq 'e0055555-5555-5555-5555-555555555555'
+
+### Assets Costing More Than 100000
+GET {{host}}/asset/Assets?$filter=purchaseCost gt 100000
+
+### Apple Assets
+GET {{host}}/asset/Assets?$filter=vendor eq 'Apple'

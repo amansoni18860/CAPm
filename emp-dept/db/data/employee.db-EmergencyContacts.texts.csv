@@ -1,0 +1,12 @@
+ID,locale,contactName,relationship
+ec001,en,Ramesh Soni,Father
+ec001,de,Ramesh Soni,Vater
+ec001,fr,Ramesh Soni,Pere
+
+ec002,en,Sunita Soni,Mother
+ec002,de,Sunita Soni,Mutter
+ec002,fr,Sunita Soni,Mere
+
+ec003,en,Rohit Sharma,Spouse
+ec003,de,Rohit Sharma,Ehepartner
+ec003,fr,Rohit Sharma,Conjoint

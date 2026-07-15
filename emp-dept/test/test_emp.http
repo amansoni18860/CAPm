@@ -1,0 +1,158 @@
+@host=http://localhost:4004
+
+### Service Document
+GET {{host}}/odata/v4/Employee
+
+### Metadata
+GET {{host}}/odata/v4/Employee/$metadata
+
+### Get All Employees
+GET {{host}}/odata/v4/Employee/Employees
+
+### Get Employee Count
+GET {{host}}/odata/v4/Employee/Employees/$count
+
+### Get First Employee
+GET {{host}}/odata/v4/Employee/Employees?$top=1
+
+### Get Top 5 Employees
+GET {{host}}/odata/v4/Employee/Employees?$top=5
+
+### Skip First 5 Employees
+GET {{host}}/odata/v4/Employee/Employees?$skip=5
+
+### Pagination
+GET {{host}}/odata/v4/Employee/Employees?$top=5&$skip=0
+
+### Select Specific Fields
+GET {{host}}/odata/v4/Employee/Employees?$select=ID,name,designation,salary
+
+### Sort Name Asc
+GET {{host}}/odata/v4/Employee/Employees?$orderby=name asc
+
+### Sort Salary Desc
+GET {{host}}/odata/v4/Employee/Employees?$orderby=salary desc
+
+### Filter By Gender
+GET {{host}}/odata/v4/Employee/Employees?$filter=gender eq 'M'
+
+### Filter Female Employees
+GET {{host}}/odata/v4/Employee/Employees?$filter=gender eq 'F'
+
+### Filter Engineers
+GET {{host}}/odata/v4/Employee/Employees?$filter=designation eq 'ENGINEER'
+
+### Filter Managers
+GET {{host}}/odata/v4/Employee/Employees?$filter=designation eq 'MANAGER'
+
+### Salary Greater Than
+GET {{host}}/odata/v4/Employee/Employees?$filter=salary gt 1000000
+
+### Salary Less Than
+GET {{host}}/odata/v4/Employee/Employees?$filter=salary lt 1000000
+
+### Age Greater Than 30
+GET {{host}}/odata/v4/Employee/Employees?$filter=age gt 30
+
+### Age Between 25 and 35
+GET {{host}}/odata/v4/Employee/Employees?$filter=age ge 25 and age le 35
+
+### Employees From Karnataka
+GET {{host}}/odata/v4/Employee/Employees?$filter=state eq 'Karnataka'
+
+### Search By Name
+GET {{host}}/odata/v4/Employee/Employees?$filter=contains(name,'Aman')
+
+### Starts With
+GET {{host}}/odata/v4/Employee/Employees?$filter=startswith(name,'A')
+
+### Ends With
+GET {{host}}/odata/v4/Employee/Employees?$filter=endswith(name,'a')
+
+### Multiple Conditions
+GET {{host}}/odata/v4/Employee/Employees?$filter=gender eq 'F' and salary gt 1000000
+
+### Select + Filter
+GET {{host}}/odata/v4/Employee/Employees?$select=name,salary&$filter=salary gt 1000000
+
+### Select + OrderBy
+GET {{host}}/odata/v4/Employee/Employees?$select=name,salary&$orderby=salary desc
+
+### Filter + OrderBy + Pagination
+GET {{host}}/odata/v4/Employee/Employees?$filter=designation eq 'ENGINEER'&$orderby=salary desc&$top=5
+
+### Create Employee
+POST {{host}}/odata/v4/Employee/Employees
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "age": 29,
+  "gender": "M",
+  "designation": "ENGINEER",
+  "joiningDate": "2025-01-15T09:00:00Z",
+  "salary": 900000,
+  "phone": "9876543210",
+  "email": "john.doe@example.com",
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "country": "India"
+}
+
+### Get Employee By ID
+GET {{host}}/odata/v4/Employee/Employees(2c2c4736-0994-4b7d-a4d0-084f774ece31)
+
+### Update Employee
+PATCH {{host}}/odata/v4/Employee/Employees(2c2c4736-0994-4b7d-a4d0-084f774ece31)
+Content-Type: application/json
+
+{
+  "salary": 1200000,
+  "designation": "SENIOR_ENG"
+}
+
+### Replace Employee
+PUT {{host}}/odata/v4/Employee/Employees(2c2c4736-0994-4b7d-a4d0-084f774ece31)
+Content-Type: application/json
+
+{
+  "name": "John Doe Updated",
+  "age": 30,
+  "gender": "M",
+  "designation": "LEAD",
+  "joiningDate": "2025-01-15T09:00:00Z",
+  "salary": 1500000,
+  "phone": "9999999999",
+  "email": "john.updated@example.com",
+  "city": "Pune",
+  "state": "Maharashtra",
+  "country": "India"
+}
+
+### Delete Employee
+DELETE {{host}}/odata/v4/Employee/Employees(2c2c4736-0994-4b7d-a4d0-084f774ece31)
+
+### Count Engineers
+GET {{host}}/odata/v4/Employee/Employees/$count?$filter=designation eq 'ENGINEER'
+
+### Count Female Employees
+GET {{host}}/odata/v4/Employee/Employees/$count?$filter=gender eq 'F'
+
+### Employees Joined After 2023
+GET {{host}}/odata/v4/Employee/Employees?$filter=joiningDate ge 2023-01-01T00:00:00Z
+
+### High Salary Employees
+GET {{host}}/odata/v4/Employee/Employees?$filter=salary ge 1500000
+
+### Bengaluru Engineers
+GET {{host}}/odata/v4/Employee/Employees?$filter=city eq 'Bengaluru' and designation eq 'ENGINEER'
+
+### Name and Email Only
+GET {{host}}/odata/v4/Employee/Employees?$select=name,email
+
+### Distinct Scenario
+GET {{host}}/odata/v4/Employee/Employees?$select=designation
+
+### Full Text Search (if enabled)
+GET {{host}}/odata/v4/Employee/Employees?$search=Aman
+

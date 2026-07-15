@@ -1,0 +1,11 @@
+ID,payroll_ID,componentName,amount
+pc001,pay001,Basic Salary,3000000
+pc002,pay001,HRA,300000
+pc003,pay001,Allowance,150000
+pc004,pay001,Bonus,50000
+pc005,pay001,Tax,-500000
+pc006,pay002,Basic Salary,2200000
+pc007,pay002,HRA,220000
+pc008,pay002,Allowance,100000
+pc009,pay002,Bonus,25000
+pc010,pay002,Tax,-300000

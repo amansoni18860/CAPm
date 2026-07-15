@@ -1,0 +1,63 @@
+
+@host=http://localhost:4004/odata/v4/capm
+
+### Read ReadOnly Field
+GET {{host}}/Employees?$select=name,employeeCode
+
+### Try Updating
+PATCH {{host}}/Employees('e0011111-1111-1111-1111-111111111111')
+Content-Type: application/json
+
+{
+  "employeeCode":"EMP999"
+}
+
+
+### FAIL - Missing name
+POST {{host}}/Employees
+Content-Type: application/json
+
+{
+  "age": 25,
+  "gender": "M",
+  "designation": "ENGINEER"
+}
+
+
+### FAIL - Missing age
+POST {{host}}/Employees
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "gender": "M",
+  "designation": "ENGINEER"
+}
+
+###  Verify ReadOnly Fields
+GET {{host}}/Employees?$select=name,employeeCode,salary
+
+### Try Updating
+
+PATCH {{host}}/Employees('e0055555-5555-5555-5555-555555555555')
+Content-Type: application/json
+
+{
+  "salary":9999999
+}
+
+### Computed
+GET {{host}}/Employees?$select=name,password
+
+
+### Try Setting Password
+PATCH {{host}}/Employees('e0055555-5555-5555-5555-555555555555')
+Content-Type: application/json
+
+{
+  "password":"MyPassword"
+}
+
+
+### calculated field
+GET {{host}}/Employees?$select=name,salary,bonus,totalSalary

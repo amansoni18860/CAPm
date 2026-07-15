@@ -1,0 +1,16 @@
+ID,locale,assetName,vendor
+asset001,en,Dell Latitude 7440,Dell
+asset001,de,Dell Latitude 7440,Dell
+asset001,fr,Dell Latitude 7440,Dell
+
+asset002,en,HP EliteBook 840,HP
+asset002,de,HP EliteBook 840,HP
+asset002,fr,HP EliteBook 840,HP
+
+asset003,en,iPhone 15,Apple
+asset003,de,iPhone 15,Apple
+asset003,fr,iPhone 15,Apple
+
+asset005,en,MacBook Pro,Apple
+asset005,de,MacBook Pro,Apple
+asset005,fr,MacBook Pro,Apple

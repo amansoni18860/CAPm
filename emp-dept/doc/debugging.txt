@@ -1,0 +1,301 @@
+CAP & Fiori Metadata Debugging Guide
+
+1. WHAT IS $METADATA?
+
+URL:
+http://localhost:4004/odata/v4/<service>/$metadata
+
+Metadata is the OData contract generated from your CDS model.
+Fiori Elements reads metadata to build:
+- List Reports
+- Object Pages
+- Filter Bars
+- Value Helps
+- Draft Features
+- Actions
+
+Whenever something does not work in Fiori, check metadata first.
+
+--------------------------------------------------
+2. PROPERTY VS NAVIGATIONPROPERTY
+--------------------------------------------------
+
+Property:
+<Property Name="gender_code" />
+
+Represents:
+- Database column
+- Editable field
+- Filter field
+- Value Help target
+
+NavigationProperty:
+<NavigationProperty Name="gender" />
+
+Represents:
+- Association
+- Relationship
+- Expandable data
+
+Example:
+
+Employee
+  -> gender (association)
+     -> code
+     -> text
+
+--------------------------------------------------
+3. HOW TO FIND VALUE HELP
+--------------------------------------------------
+
+Search metadata for:
+Common.ValueList
+
+Example:
+
+<Annotations Target="capmService.Employees/gender_code">
+
+This means Value Help is attached to:
+
+gender_code
+
+NOT:
+- gender
+- gender.text
+- gender.code
+
+--------------------------------------------------
+4. HOW TO FIND THE EDITABLE FIELD
+--------------------------------------------------
+
+Search:
+<Property Name=
+
+Example:
+
+<Property Name="gender_code" />
+
+If the property exists, it can normally be edited.
+
+--------------------------------------------------
+5. HOW TO CHECK ASSOCIATIONS
+--------------------------------------------------
+
+Search:
+<NavigationProperty
+
+Example:
+
+<NavigationProperty Name="gender">
+
+<ReferentialConstraint
+    Property="gender_code"
+    ReferencedProperty="code" />
+
+This tells us:
+
+Association : gender
+Foreign Key : gender_code
+Referenced Key : code
+
+--------------------------------------------------
+6. HOW TO READ OBJECT PAGE FIELDS
+--------------------------------------------------
+
+Search:
+UI.FieldGroup
+
+Example:
+
+<Annotation Term="UI.FieldGroup"
+            Qualifier="GeneralInfoSection">
+
+Inside you may see:
+
+<Path="employeeCode" />
+
+Generated from:
+
+{ Value : employeeCode }
+
+Example:
+
+<Path="gender/code" />
+
+Generated from:
+
+{ Value : gender.code }
+
+--------------------------------------------------
+7. HOW TO READ FILTER BAR
+--------------------------------------------------
+
+Search:
+UI.SelectionFields
+
+Example:
+
+<PropertyPath>gender_code</PropertyPath>
+
+Generated from:
+
+UI.SelectionFields : [
+    gender_code
+]
+
+--------------------------------------------------
+8. HOW TO READ LABELS
+--------------------------------------------------
+
+Search:
+Common.Label
+
+Example:
+
+<Annotation Term="Common.Label"
+            String="Gender" />
+
+Generated from:
+
+gender @Common.Label : 'Gender';
+
+--------------------------------------------------
+9. HOW TO READ TEXT ANNOTATIONS
+--------------------------------------------------
+
+Search:
+Common.Text
+
+Example:
+
+<Annotation Term="Common.Text"
+            Path="gender/text" />
+
+Generated from:
+
+gender_code @Common.Text : gender.text;
+
+Meaning:
+Store:
+    gender_code = Male
+
+Display:
+    Male
+
+--------------------------------------------------
+10. HOW TO READ OBJECT PAGE FACETS
+--------------------------------------------------
+
+Search:
+UI.Facets
+
+Example:
+
+Label="General Information"
+
+Target="@UI.FieldGroup#GeneralInfoSection"
+
+This connects the Object Page section to the FieldGroup.
+
+--------------------------------------------------
+11. HOW TO READ LIST REPORT COLUMNS
+--------------------------------------------------
+
+Search:
+UI.LineItem
+
+Example:
+
+<Path="name" />
+
+Generated from:
+
+{ Value : name }
+
+Example:
+
+<Path="gender/text" />
+
+Generated from:
+
+{ Value : gender.text }
+
+--------------------------------------------------
+12. HOW TO READ HEADER INFO
+--------------------------------------------------
+
+Search:
+UI.HeaderInfo
+
+Example:
+
+Title -> name
+Description -> employeeCode
+ImageUrl -> photoUrl
+
+Generated from:
+
+UI.HeaderInfo : {
+    Title       : { Value : name },
+    Description : { Value : employeeCode },
+    ImageUrl    : photoUrl
+}
+
+--------------------------------------------------
+13. REAL DEBUGGING PROCESS
+--------------------------------------------------
+
+Step 1
+Open:
+$metadata
+
+Step 2
+Search for field name.
+Example:
+gender
+
+Step 3
+Check:
+- Property
+- NavigationProperty
+
+Step 4
+Search:
+Common.ValueList
+
+Step 5
+Find Target.
+Example:
+Target="capmService.Employees/gender_code"
+
+Step 6
+Search:
+UI.FieldGroup
+
+Step 7
+Check which field Object Page is rendering.
+
+--------------------------------------------------
+14. GOLDEN RULE
+--------------------------------------------------
+
+Display Fields:
+- department.name
+- manager.name
+- gender.text
+
+Editable Fields:
+- department_ID
+- manager_ID
+- gender_code
+
+Value Help should usually be attached to the editable foreign-key field, not the association navigation path.
+
+Example:
+Display:
+    gender.text
+
+Edit/Value Help:
+    gender_code
+
+This rule solves most CAP + Fiori Elements Value Help issues.

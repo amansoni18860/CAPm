@@ -1,0 +1,368 @@
+@host=http://localhost:4004/odata/v4/capm
+
+##################################################
+# SERVICE
+##################################################
+
+### Service Document
+GET {{host}}
+
+### Metadata
+GET {{host}}/$metadata
+
+##################################################
+# EMPLOYEES
+##################################################
+
+### All Employees
+GET {{host}}/Employees
+
+### Employee Count
+GET {{host}}/Employees/$count
+
+### Male Employees
+GET {{host}}/Employees?$filter=gender eq 'M'
+
+### Female Employees
+GET {{host}}/Employees?$filter=gender eq 'F'
+
+### Engineers
+GET {{host}}/Employees?$filter=designation eq 'ENGINEER'
+
+### Managers
+GET {{host}}/Employees?$filter=designation eq 'MANAGER'
+
+### Employees Sorted By Salary
+GET {{host}}/Employees?$orderby=salary desc
+
+### Top 5 Employees
+GET {{host}}/Employees?$top=5
+
+##################################################
+# MANAGER RELATIONSHIP
+##################################################
+
+### Employee With Manager
+GET {{host}}/Employees?$expand=manager
+
+### Employees Reporting To Aman
+GET {{host}}/Employees?$filter=manager_ID eq 'e0011111-1111-1111-1111-111111111111'
+
+### Employees Reporting To Neha
+GET {{host}}/Employees?$filter=manager_ID eq 'e0044444-4444-4444-4444-444444444444'
+
+##################################################
+# DEPARTMENT RELATIONSHIP
+##################################################
+
+### All Departments
+GET {{host}}/Departments
+
+### Departments With Head
+GET {{host}}/Departments?$expand=headEmployee
+
+### Departments With Employees
+GET {{host}}/Departments?$expand=employees
+
+### Employee With Department
+GET {{host}}/Employees?$expand=department
+
+### IT Department Employees
+GET {{host}}/Employees?$filter=department_ID eq 'd0011111-1111-1111-1111-111111111111'
+
+### HR Department Employees
+GET {{host}}/Employees?$filter=department_ID eq 'd0022222-2222-2222-2222-222222222222'
+
+##################################################
+# EMPLOYEE COMPLETE PROFILE
+##################################################
+
+### Employee With Department And Manager
+GET {{host}}/Employees?$expand=department,manager
+
+### Employee With Assets
+GET {{host}}/Employees?$expand=assets
+
+### Employee With Leaves
+GET {{host}}/Employees?$expand=leaves
+
+### Employee With Payrolls
+GET {{host}}/Employees?$expand=payrolls
+
+### Complete Employee Profile
+GET {{host}}/Employees?$expand=department,manager,assets,leaves,payrolls
+
+##################################################
+# PROJECTS
+##################################################
+
+### All Projects
+GET {{host}}/Projects
+
+### Active Projects
+GET {{host}}/Projects?$filter=status eq 'ACTIVE'
+
+### Completed Projects
+GET {{host}}/Projects?$filter=status eq 'COMPLETED'
+
+### Client Projects
+GET {{host}}/Projects?$filter=projectType eq 'CLIENT'
+
+### Internal Projects
+GET {{host}}/Projects?$filter=projectType eq 'INTERNAL'
+
+### Research Projects
+GET {{host}}/Projects?$filter=projectType eq 'RESEARCH'
+
+### Projects By Budget
+GET {{host}}/Projects?$orderby=budget desc
+
+##################################################
+# PROJECT ASSOCIATIONS
+##################################################
+
+### Project With Manager
+GET {{host}}/Projects?$expand=projectManager
+
+### Project With Department
+GET {{host}}/Projects?$expand=department
+
+### Project With Department And Manager
+GET {{host}}/Projects?$expand=department,projectManager
+
+### Projects Managed By Aman
+GET {{host}}/Projects?$filter=projectManager_ID eq 'e0011111-1111-1111-1111-111111111111'
+
+### Projects Of IT Department
+GET {{host}}/Projects?$filter=department_ID eq 'd0011111-1111-1111-1111-111111111111'
+
+##################################################
+# DEPARTMENT + PROJECTS
+##################################################
+
+### Departments With Projects
+GET {{host}}/Departments?$expand=projects
+
+### IT Department With Projects
+GET {{host}}/Departments?$filter=name eq 'IT'&$expand=projects
+
+##################################################
+# PAYROLLS
+##################################################
+
+### All Payrolls
+GET {{host}}/Payrolls
+
+### Paid Payrolls
+GET {{host}}/Payrolls?$filter=status eq 'PAID'
+
+### January Payrolls
+GET {{host}}/Payrolls?$filter=payrollMonth eq 'JAN'
+
+### Payroll With Employee
+GET {{host}}/Payrolls?$expand=employee
+
+### Highest Payroll
+GET {{host}}/Payrolls?$orderby=netSalary desc&$top=1
+
+### Payrolls For Aman
+GET {{host}}/Payrolls?$filter=employee_ID eq 'e0011111-1111-1111-1111-111111111111'
+
+##################################################
+# LEAVES
+##################################################
+
+### All Leaves
+GET {{host}}/Leaves
+
+### Approved Leaves
+GET {{host}}/Leaves?$filter=status eq 'APPROVED'
+
+### Pending Leaves
+GET {{host}}/Leaves?$filter=status eq 'PENDING'
+
+### Rejected Leaves
+GET {{host}}/Leaves?$filter=status eq 'REJECTED'
+
+### Leave With Employee
+GET {{host}}/Leaves?$expand=employee
+
+### Leave With Approver
+GET {{host}}/Leaves?$expand=approvedBy
+
+### Leave With Employee And Approver
+GET {{host}}/Leaves?$expand=employee,approvedBy
+
+##################################################
+# ASSETS
+##################################################
+
+### All Assets
+GET {{host}}/Assets
+
+### Assigned Assets
+GET {{host}}/Assets?$filter=status eq 'ASSIGNED'
+
+### Available Assets
+GET {{host}}/Assets?$filter=status eq 'AVAILABLE'
+
+### Lost Assets
+GET {{host}}/Assets?$filter=status eq 'LOST'
+
+### Laptops
+GET {{host}}/Assets?$filter=assetType eq 'LAPTOP'
+
+### Assets With Employee
+GET {{host}}/Assets?$expand=assignedTo
+
+### Assets Assigned To Aman
+GET {{host}}/Assets?$filter=assignedTo_ID eq 'e0011111-1111-1111-1111-111111111111'
+
+##################################################
+# CROSS ENTITY TESTS
+##################################################
+
+### Department -> Employees
+GET {{host}}/Departments?$expand=employees
+
+### Department -> Head Employee
+GET {{host}}/Departments?$expand=headEmployee
+
+### Department -> Employees + Projects
+GET {{host}}/Departments?$expand=employees,projects
+
+### Employee -> Department + Assets
+GET {{host}}/Employees?$expand=department,assets
+
+### Employee -> Department + Leaves
+GET {{host}}/Employees?$expand=department,leaves
+
+### Employee -> Department + Payrolls
+GET {{host}}/Employees?$expand=department,payrolls
+
+### Project -> Department + Manager
+GET {{host}}/Projects?$expand=department,projectManager
+
+### Asset -> Assigned Employee
+GET {{host}}/Assets?$expand=assignedTo
+
+### Leave -> Employee + Approver
+GET {{host}}/Leaves?$expand=employee,approvedBy
+
+### Payroll -> Employee
+GET {{host}}/Payrolls?$expand=employee
+
+##################################################
+# TEMPORAL PROJECT TESTS
+##################################################
+
+### Current Projects
+GET {{host}}/Projects?$filter=validTo gt 2026-01-01T00:00:00Z
+
+### Projects Ordered By validFrom
+GET {{host}}/Projects?$orderby=validFrom desc
+
+### Projects Ordered By validTo
+GET {{host}}/Projects?$orderby=validTo desc
+
+
+
+##################################################
+# MANAGER -> REPORTEES
+##################################################
+
+### Direct Reportees of Aman
+GET {{host}}/Employees('e0011111-1111-1111-1111-111111111111')?$expand=reportees
+
+### Direct Reportees of Priya
+GET {{host}}/Employees('e0022222-2222-2222-2222-222222222222')?$expand=reportees
+
+### Direct Reportees of Rahul
+GET {{host}}/Employees('e0033333-3333-3333-3333-333333333333')?$expand=reportees
+
+### Direct Reportees of Neha
+GET {{host}}/Employees('e0044444-4444-4444-4444-444444444444')?$expand=reportees
+
+### Manager Along With Reportees
+GET {{host}}/Employees?$expand=manager,reportees
+
+### Reportee Count Under Aman
+GET {{host}}/Employees('e0011111-1111-1111-1111-111111111111')?$expand=reportees($count=true)
+
+### Employees With Their Managers
+GET {{host}}/Employees?$expand=manager
+
+### Employees With Managers And Reportees
+GET {{host}}/Employees?$expand=manager,reportees
+
+
+##################################################
+# DEPARTMENT RELATIONSHIPS
+##################################################
+
+### Department With Employees
+GET {{host}}/Departments?$expand=employees
+
+### IT Department With Employees
+GET {{host}}/Departments('d0011111-1111-1111-1111-111111111111')?$expand=employees
+
+### HR Department With Employees
+GET {{host}}/Departments('d0022222-2222-2222-2222-222222222222')?$expand=employees
+
+### Finance Department With Employees
+GET {{host}}/Departments('d0033333-3333-3333-3333-333333333333')?$expand=employees
+
+### Department Head And Employees
+GET {{host}}/Departments?$expand=headEmployee,employees
+
+### Department Head + Employees + Projects
+GET {{host}}/Departments?$expand=headEmployee,employees,projects
+
+
+##################################################
+# PROJECT RELATIONSHIPS
+##################################################
+
+### Projects With Department
+GET {{host}}/Projects?$expand=department
+
+### Projects With Manager
+GET {{host}}/Projects?$expand=projectManager
+
+### Projects With Department And Manager
+GET {{host}}/Projects?$expand=department,projectManager
+
+### Projects Managed By Aman
+GET {{host}}/Projects?$filter=projectManager_ID eq 'e0011111-1111-1111-1111-111111111111'
+
+### Projects Managed By Priya
+GET {{host}}/Projects?$filter=projectManager_ID eq 'e0022222-2222-2222-2222-222222222222'
+
+### All Projects Of IT Department
+GET {{host}}/Projects?$filter=department_ID eq 'd0011111-1111-1111-1111-111111111111'
+
+### Active Projects Of IT Department
+GET {{host}}/Projects?$filter=department_ID eq 'd0011111-1111-1111-1111-111111111111' and status eq 'ACTIVE'
+
+
+##################################################
+# COMPLETE HIERARCHY TESTS
+##################################################
+
+### Employee Full Hierarchy
+GET {{host}}/Employees?$expand=manager,reportees,department,assets,leaves,payrolls
+
+### Department Full Hierarchy
+GET {{host}}/Departments?$expand=headEmployee,employees,projects
+
+### Project Full Hierarchy
+GET {{host}}/Projects?$expand=department,projectManager
+
+### Asset Full Hierarchy
+GET {{host}}/Assets?$expand=assignedTo
+
+### Leave Full Hierarchy
+GET {{host}}/Leaves?$expand=employee,approvedBy
+
+### Payroll Full Hierarchy
+GET {{host}}/Payrolls?$expand=employee

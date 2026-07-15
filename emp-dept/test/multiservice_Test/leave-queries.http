@@ -1,0 +1,25 @@
+@host=http://localhost:4004/odata/v4
+
+### Approved Leaves
+GET {{host}}/leave/Leaves?$filter=status eq 'APPROVED'
+
+### Pending Leaves
+GET {{host}}/leave/Leaves?$filter=status eq 'PENDING'
+
+### Rejected Leaves
+GET {{host}}/leave/Leaves?$filter=status eq 'REJECTED'
+
+### Casual Leaves
+GET {{host}}/leave/Leaves?$filter=leaveType eq 'CASUAL'
+
+### Sick Leaves
+GET {{host}}/leave/Leaves?$filter=leaveType eq 'SICK'
+
+### Earned Leaves
+GET {{host}}/leave/Leaves?$filter=leaveType eq 'EARNED'
+
+### Leaves By Employee
+GET {{host}}/leave/Leaves?$filter=employeeId eq 'e0055555-5555-5555-5555-555555555555'
+
+### Leaves Approved By Manager
+GET {{host}}/leave/Leaves?$filter=approvedBy eq 'e0044444-4444-4444-4444-444444444444'

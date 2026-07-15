@@ -1,0 +1,16 @@
+ID,locale,reason
+leave001,en,Personal work
+leave001,de,Personliche Angelegenheit
+leave001,fr,Travail personnel
+
+leave002,en,Fever
+leave002,de,Fieber
+leave002,fr,Fievre
+
+leave003,en,Vacation
+leave003,de,Urlaub
+leave003,fr,Vacances
+
+leave004,en,Family function
+leave004,de,Familienfeier
+leave004,fr,Fete familiale

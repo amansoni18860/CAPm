@@ -1,0 +1,270 @@
+@host=http://localhost:4004/odata/v4
+
+##################################################
+# SERVICE
+##################################################
+
+### Service Document
+GET {{host}}/capm
+
+### Metadata
+GET {{host}}/capm/$metadata
+
+##################################################
+# EMPLOYEES
+##################################################
+
+### Get All Employees
+GET {{host}}/capm/Employees
+
+### Employee Count
+GET {{host}}/capm/Employees/$count
+
+### Male Employees
+GET {{host}}/capm/Employees?$filter=gender eq 'M'
+
+### Female Employees
+GET {{host}}/capm/Employees?$filter=gender eq 'F'
+
+### Engineers
+GET {{host}}/capm/Employees?$filter=designation eq 'ENGINEER'
+
+### Managers
+GET {{host}}/capm/Employees?$filter=designation eq 'MANAGER'
+
+### Directors
+GET {{host}}/capm/Employees?$filter=designation eq 'DIRECTOR'
+
+### Salary Greater Than 1000000
+GET {{host}}/capm/Employees?$filter=salary gt 1000000
+
+### Employees From Karnataka
+GET {{host}}/capm/Employees?$filter=state eq 'Karnataka'
+
+### Employees Ordered By Salary Desc
+GET {{host}}/capm/Employees?$orderby=salary desc
+
+### Top 5 Employees
+GET {{host}}/capm/Employees?$top=5
+
+### Employee Search
+GET {{host}}/capm/Employees?$search=Aman
+
+##################################################
+# MANAGER QUERIES
+##################################################
+
+### Employees Under Aman
+GET {{host}}/capm/Employees?$filter=managerId eq 'e0011111-1111-1111-1111-111111111111'
+
+### Employees Under Priya
+GET {{host}}/capm/Employees?$filter=managerId eq 'e0022222-2222-2222-2222-222222222222'
+
+### Employees Under Rahul
+GET {{host}}/capm/Employees?$filter=managerId eq 'e0033333-3333-3333-3333-333333333333'
+
+### Employees Under Neha
+GET {{host}}/capm/Employees?$filter=managerId eq 'e0044444-4444-4444-4444-444444444444'
+
+##################################################
+# DEPARTMENTS
+##################################################
+
+### Get All Departments
+GET {{host}}/capm/Departments
+
+### Department Count
+GET {{host}}/capm/Departments/$count
+
+### IT Department
+GET {{host}}/capm/Departments?$filter=name eq 'IT'
+
+### HR Department
+GET {{host}}/capm/Departments?$filter=name eq 'HR'
+
+### Department Budget Greater Than 10000000
+GET {{host}}/capm/Departments?$filter=budget gt 10000000
+
+##################################################
+# EMPLOYEES OF DEPARTMENT
+##################################################
+
+### Employees In IT Department
+GET {{host}}/capm/Employees?$filter=department eq 'd0011111-1111-1111-1111-111111111111'
+
+### Employees In HR Department
+GET {{host}}/capm/Employees?$filter=department eq 'd0022222-2222-2222-2222-222222222222'
+
+### Employees In Finance Department
+GET {{host}}/capm/Employees?$filter=department eq 'd0033333-3333-3333-3333-333333333333'
+
+### Engineers In IT Department
+GET {{host}}/capm/Employees?$filter=department eq 'd0011111-1111-1111-1111-111111111111' and designation eq 'ENGINEER'
+
+### Employees In IT Department Above 900K Salary
+GET {{host}}/capm/Employees?$filter=department eq 'd0011111-1111-1111-1111-111111111111' and salary gt 900000
+
+##################################################
+# PROJECTS
+##################################################
+
+### All Projects
+GET {{host}}/capm/Projects
+
+### Project Count
+GET {{host}}/capm/Projects/$count
+
+### Active Projects
+GET {{host}}/capm/Projects?$filter=status eq 'ACTIVE'
+
+### Completed Projects
+GET {{host}}/capm/Projects?$filter=status eq 'COMPLETED'
+
+### On Hold Projects
+GET {{host}}/capm/Projects?$filter=status eq 'ON_HOLD'
+
+### Internal Projects
+GET {{host}}/capm/Projects?$filter=projectType eq 'INTERNAL'
+
+### Client Projects
+GET {{host}}/capm/Projects?$filter=projectType eq 'CLIENT'
+
+### Research Projects
+GET {{host}}/capm/Projects?$filter=projectType eq 'RESEARCH'
+
+### High Budget Projects
+GET {{host}}/capm/Projects?$filter=budget gt 10000000
+
+### Projects Ordered By Budget
+GET {{host}}/capm/Projects?$orderby=budget desc
+
+### Projects Ordered By Team Size
+GET {{host}}/capm/Projects?$orderby=teamSize desc
+
+### Active Client Projects
+GET {{host}}/capm/Projects?$filter=status eq 'ACTIVE' and projectType eq 'CLIENT'
+
+##################################################
+# TEMPORAL PROJECTS
+##################################################
+
+### Current Projects
+GET {{host}}/capm/Projects?$filter=validTo gt 2026-01-01T00:00:00Z
+
+### Past Projects
+GET {{host}}/capm/Projects?$filter=validTo lt 2025-01-01T00:00:00Z
+
+##################################################
+# PAYROLLS
+##################################################
+
+### All Payrolls
+GET {{host}}/capm/Payrolls
+
+### Payroll Count
+GET {{host}}/capm/Payrolls/$count
+
+### Paid Payrolls
+GET {{host}}/capm/Payrolls?$filter=status eq 'PAID'
+
+### Draft Payrolls
+GET {{host}}/capm/Payrolls?$filter=status eq 'DRAFT'
+
+### January Payrolls
+GET {{host}}/capm/Payrolls?$filter=payrollMonth eq 'JAN'
+
+### Payroll Above 1000000
+GET {{host}}/capm/Payrolls?$filter=netSalary gt 1000000
+
+### Highest Payroll
+GET {{host}}/capm/Payrolls?$orderby=netSalary desc&$top=1
+
+### Payroll For Specific Employee
+GET {{host}}/capm/Payrolls?$filter=employeeId eq 'e0055555-5555-5555-5555-555555555555'
+
+##################################################
+# LEAVES
+##################################################
+
+### All Leaves
+GET {{host}}/capm/Leaves
+
+### Leave Count
+GET {{host}}/capm/Leaves/$count
+
+### Approved Leaves
+GET {{host}}/capm/Leaves?$filter=status eq 'APPROVED'
+
+### Pending Leaves
+GET {{host}}/capm/Leaves?$filter=status eq 'PENDING'
+
+### Rejected Leaves
+GET {{host}}/capm/Leaves?$filter=status eq 'REJECTED'
+
+### Casual Leaves
+GET {{host}}/capm/Leaves?$filter=leaveType eq 'CASUAL'
+
+### Sick Leaves
+GET {{host}}/capm/Leaves?$filter=leaveType eq 'SICK'
+
+### Earned Leaves
+GET {{host}}/capm/Leaves?$filter=leaveType eq 'EARNED'
+
+### Employee Leaves
+GET {{host}}/capm/Leaves?$filter=employeeId eq 'e0055555-5555-5555-5555-555555555555'
+
+##################################################
+# ASSETS
+##################################################
+
+### All Assets
+GET {{host}}/capm/Assets
+
+### Asset Count
+GET {{host}}/capm/Assets/$count
+
+### Assigned Assets
+GET {{host}}/capm/Assets?$filter=status eq 'ASSIGNED'
+
+### Available Assets
+GET {{host}}/capm/Assets?$filter=status eq 'AVAILABLE'
+
+### Lost Assets
+GET {{host}}/capm/Assets?$filter=status eq 'LOST'
+
+### Assets Under Repair
+GET {{host}}/capm/Assets?$filter=status eq 'IN_REPAIR'
+
+### Laptops
+GET {{host}}/capm/Assets?$filter=assetType eq 'LAPTOP'
+
+### Mobiles
+GET {{host}}/capm/Assets?$filter=assetType eq 'MOBILE'
+
+### Apple Assets
+GET {{host}}/capm/Assets?$filter=vendor eq 'Apple'
+
+### Assets Cost More Than 100000
+GET {{host}}/capm/Assets?$filter=purchaseCost gt 100000
+
+### Assets Assigned To Employee
+GET {{host}}/capm/Assets?$filter=assignedTo eq 'e0055555-5555-5555-5555-555555555555'
+
+##################################################
+# AGGREGATION STYLE TESTS
+##################################################
+
+### Top Paid Employees
+GET {{host}}/capm/Employees?$orderby=salary desc&$top=3
+
+### Top Budget Projects
+GET {{host}}/capm/Projects?$orderby=budget desc&$top=3
+
+### Top Payrolls
+GET {{host}}/capm/Payrolls?$orderby=netSalary desc&$top=3
+
+### First 5 Assets
+GET {{host}}/capm/Assets?$top=5
+
+### Next 5 Assets
+GET {{host}}/capm/Assets?$top=5&$skip=5

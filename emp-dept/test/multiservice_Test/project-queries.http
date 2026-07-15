@@ -1,0 +1,31 @@
+@host=http://localhost:4004/odata/v4
+
+### Internal Projects
+GET {{host}}/Project/Projects?$filter=projectType eq 'INTERNAL'
+
+### Client Projects
+GET {{host}}/Project/Projects?$filter=projectType eq 'CLIENT'
+
+### Research Projects
+GET {{host}}/Project/Projects?$filter=projectType eq 'RESEARCH'
+
+### Maintenance Projects
+GET {{host}}/Project/Projects?$filter=projectType eq 'MAINTENANCE'
+
+### Active Projects
+GET {{host}}/Project/Projects?$filter=status eq 'ACTIVE'
+
+### Completed Projects
+GET {{host}}/Project/Projects?$filter=status eq 'COMPLETED'
+
+### Projects Budget > 1 Crore
+GET {{host}}/Project/Projects?$filter=budget gt 10000000
+
+### Team Size Greater Than 5
+GET {{host}}/Project/Projects?$filter=teamSize gt 5
+
+### Projects With Client Name
+GET {{host}}/Project/Projects?$filter=clientName ne null
+
+### Temporal Query
+GET {{host}}/Project/Projects?$filter=validTo gt 2026-01-01T00:00:00Z

@@ -1,0 +1,5 @@
+ID,leave_ID,action,remarks,actionDate
+la001,leave001,APPROVED,Approved by reporting manager,2025-01-06T10:00:00Z
+la002,leave002,APPROVED,Medical documents verified,2025-02-01T12:00:00Z
+la003,leave003,APPROVED,Vacation approved,2025-03-02T10:00:00Z
+la004,leave004,PENDING,Awaiting approval,2025-04-18T11:00:00Z

@@ -1,0 +1,31 @@
+@host=http://localhost:4004/odata/v4
+
+### Male Employees
+GET {{host}}/Employee/Employees?$filter=gender eq 'M'
+
+### Female Employees
+GET {{host}}/Employee/Employees?$filter=gender eq 'F'
+
+### Engineers
+GET {{host}}/Employee/Employees?$filter=designation eq 'ENGINEER'
+
+### Managers
+GET {{host}}/Employee/Employees?$filter=designation eq 'MANAGER'
+
+### Salary > 1000000
+GET {{host}}/Employee/Employees?$filter=salary gt 1000000
+
+### Employees From Karnataka
+GET {{host}}/Employee/Employees?$filter=state eq 'Karnataka'
+
+### Active Projects
+GET {{host}}/Project/Projects?$filter=status eq 'ACTIVE'
+
+### Completed Projects
+GET {{host}}/Project/Projects?$filter=status eq 'COMPLETED'
+
+### Approved Leaves
+GET {{host}}/leave/Leaves?$filter=status eq 'APPROVED'
+
+### Assigned Assets
+GET {{host}}/asset/Assets?$filter=status eq 'ASSIGNED'

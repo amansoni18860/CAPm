@@ -1,0 +1,22 @@
+@host=http://localhost:4004/odata/v4
+
+### Paid Payrolls
+GET {{host}}/Payroll/Payrolls?$filter=status eq 'PAID'
+
+### Approved Payrolls
+GET {{host}}/Payroll/Payrolls?$filter=status eq 'APPROVED'
+
+### Draft Payrolls
+GET {{host}}/Payroll/Payrolls?$filter=status eq 'DRAFT'
+
+### January Payroll
+GET {{host}}/Payroll/Payrolls?$filter=payrollMonth eq 'JAN'
+
+### Employees With Net Salary > 1000000
+GET {{host}}/Payroll/Payrolls?$filter=netSalary gt 1000000
+
+### Highest Paid Employee
+GET {{host}}/Payroll/Payrolls?$orderby=netSalary desc&$top=1
+
+### Payroll Of Specific Employee
+GET {{host}}/Payroll/Payrolls?$filter=employeeId eq 'e0055555-5555-5555-5555-555555555555'

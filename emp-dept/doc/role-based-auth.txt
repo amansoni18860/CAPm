@@ -1,0 +1,261 @@
+==========================================================
+HRMS ROLE-BASED AUTHORIZATION TESTING GUIDE
+==========================================================
+
+MOCK USERS
+==========================================================
+
+Username : admin
+Password : admin
+Role     : Admin
+
+
+Username : hrmanager
+Password : hrmanager
+Role     : HRManager
+
+
+Username : manager
+Password : manager
+Role     : DepartmentManager
+
+
+Username : employee
+Password : employee
+Role     : Employee
+
+
+Username : viewer
+Password : viewer
+Role     : Viewer
+
+
+==========================================================
+EMPLOYEE ENTITY
+==========================================================
+
+Admin
+----------------------------------------------------------
+✓ Read Employees
+✓ Create Employees
+✓ Update Employees
+✓ Delete Employees
+
+
+HRManager
+----------------------------------------------------------
+✓ Read Employees
+✓ Create Employees
+✓ Update Employees
+✓ Delete Employees
+
+
+DepartmentManager
+----------------------------------------------------------
+✓ Read Employees
+✗ Create Employees
+✗ Update Employees
+✗ Delete Employees
+
+
+Employee
+----------------------------------------------------------
+✓ Read Employees
+✗ Create Employees
+✗ Update Employees
+✗ Delete Employees
+
+
+Viewer
+----------------------------------------------------------
+✓ Read Employees
+✗ Create Employees
+✗ Update Employees
+✗ Delete Employees
+
+
+==========================================================
+EMPLOYEE ACTIONS
+==========================================================
+
+PROMOTE EMPLOYEE
+----------------------------------------------------------
+
+Admin              ✓
+HRManager          ✓
+DepartmentManager  ✗
+Employee           ✗
+Viewer             ✗
+
+
+TRANSFER DEPARTMENT
+----------------------------------------------------------
+
+Admin              ✓
+HRManager          ✓
+DepartmentManager  ✗
+Employee           ✗
+Viewer             ✗
+
+
+ASSIGN MANAGER
+----------------------------------------------------------
+
+Admin              ✓
+HRManager          ✓
+DepartmentManager  ✗
+Employee           ✗
+Viewer             ✗
+
+
+==========================================================
+DEPARTMENT ENTITY
+==========================================================
+
+Admin
+----------------------------------------------------------
+✓ Read
+✓ Create
+✓ Update
+✓ Delete
+
+
+HRManager
+----------------------------------------------------------
+✓ Read
+✗ Create
+✗ Update
+✗ Delete
+
+
+DepartmentManager
+----------------------------------------------------------
+✓ Read
+✓ Update
+✗ Create
+✗ Delete
+
+
+Employee
+----------------------------------------------------------
+✓ Read
+✗ Create
+✗ Update
+✗ Delete
+
+
+Viewer
+----------------------------------------------------------
+✓ Read
+✗ Create
+✗ Update
+✗ Delete
+
+
+==========================================================
+DEPARTMENT ACTIONS
+==========================================================
+
+ALLOCATE BUDGET
+----------------------------------------------------------
+
+Admin              ✓
+DepartmentManager  ✓
+HRManager          ✗
+Employee           ✗
+Viewer             ✗
+
+
+==========================================================
+PROJECT ACTIONS
+==========================================================
+
+CHANGE MANAGER
+----------------------------------------------------------
+
+Admin              ✓
+DepartmentManager  ✓
+HRManager          ✗
+Employee           ✗
+Viewer             ✗
+
+
+CLOSE PROJECT
+----------------------------------------------------------
+
+Admin              ✓
+DepartmentManager  ✓
+HRManager          ✗
+Employee           ✗
+Viewer             ✗
+
+
+==========================================================
+EXPECTED TEST RESULTS
+==========================================================
+
+Login as admin
+----------------------------------------------------------
+All screens accessible
+All actions executable
+No 403 errors
+
+
+Login as hrmanager
+----------------------------------------------------------
+Can manage employees
+Can promote employees
+Can transfer departments
+Cannot allocate budget
+Cannot close projects
+
+
+Login as manager
+----------------------------------------------------------
+Can view employees
+Can allocate budget
+Can change project manager
+Cannot promote employees
+
+
+Login as employee
+----------------------------------------------------------
+Read-only access
+All actions should return 403
+
+
+Login as viewer
+----------------------------------------------------------
+Read-only access
+All actions should return 403
+
+
+==========================================================
+DEBUG CODE
+==========================================================
+
+this.before('*', req => {
+  console.log('User:', req.user.id)
+  console.log('Roles:', req.user.roles)
+})
+
+Expected Output:
+
+User: admin
+Roles: { Admin: 1 }
+
+User: hrmanager
+Roles: { HRManager: 1 }
+
+User: manager
+Roles: { DepartmentManager: 1 }
+
+User: employee
+Roles: { Employee: 1 }
+
+User: viewer
+Roles: { Viewer: 1 }
+
+==========================================================
+END OF AUTHORIZATION TEST MATRIX
+==========================================================

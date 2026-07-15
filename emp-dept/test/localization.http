@@ -1,0 +1,23 @@
+@host=http://localhost:4004/odata/v4/capm
+
+### German language
+GET {{host}}/Projects
+Accept-Language: de
+
+
+### English language
+GET {{host}}/Projects
+Accept-Language: en
+
+###
+GET {{host}}/Employees?$expand=educations
+Accept-Language: fr
+
+###
+
+GET {{host}}/Assets?$expand=maintenanceHistory
+Accept-Language: fr
+
+###
+GET {{host}}/Payrolls?$expand=components
+Accept-Language: de

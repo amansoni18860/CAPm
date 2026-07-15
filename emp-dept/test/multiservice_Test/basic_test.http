@@ -1,0 +1,22 @@
+@host=http://localhost:4004/odata/v4
+
+### Employees
+GET {{host}}/employee/Employees
+
+### Departments
+GET {{host}}/department/Departments
+
+### Projects
+GET {{host}}/project/Projects
+
+### Payrolls
+GET {{host}}/payroll/Payrolls
+
+### Leaves
+GET {{host}}/leave/Leaves
+
+### Assets
+GET {{host}}/asset/Assets
+
+### Metadata
+GET {{host}}/$metadata

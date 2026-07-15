@@ -1,0 +1,20 @@
+ID,locale,componentName
+pc001,en,Basic Salary
+pc001,de,Grundgehalt
+pc001,fr,Salaire de Base
+
+pc002,en,HRA
+pc002,de,Wohnungszulage
+pc002,fr,Indemnite Logement
+
+pc003,en,Allowance
+pc003,de,Zulage
+pc003,fr,Allocation
+
+pc004,en,Bonus
+pc004,de,Bonus
+pc004,fr,Prime
+
+pc005,en,Tax
+pc005,de,Steuer
+pc005,fr,Impot

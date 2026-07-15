@@ -1,0 +1,180 @@
+@host=http://localhost:4004/odata/v4/capm
+
+##################################################
+# UNBOUND FUNCTIONS
+##################################################
+
+### Employee Count
+GET {{host}}/getEmployeeCount()
+
+###
+
+### Department Count
+GET {{host}}/getDepartmentCount()
+
+###
+
+### Active Project Count
+GET {{host}}/getActiveProjectCount()
+
+###
+
+### Total Payroll Cost
+GET {{host}}/getTotalPayrollCost()
+
+###
+
+### Dashboard Summary
+GET {{host}}/getDashboardSummary()
+
+###
+
+### Top Employees
+GET {{host}}/getTopEmployees()
+
+###
+
+
+##################################################
+# UNBOUND ACTIONS
+##################################################
+
+### Generate Payroll
+POST {{host}}/generateMonthlyPayroll
+Content-Type: application/json
+
+{
+  "month": "JAN",
+  "year": 2025
+}
+
+###
+
+### Close Project
+POST {{host}}/closeProject
+Content-Type: application/json
+
+{
+  "projectId": "p001"
+}
+
+###
+
+### Approve Leave
+POST {{host}}/approveLeave
+Content-Type: application/json
+
+{
+  "leaveId": "leave001"
+}
+
+###
+
+### Assign Asset
+POST {{host}}/assignAsset
+Content-Type: application/json
+
+{
+  "employeeId": "e0055555-5555-5555-5555-555555555555",
+  "assetId": "asset001"
+}
+
+##################################################
+# EMPLOYEE BOUND FUNCTIONS
+##################################################
+
+### Annual Salary
+GET {{host}}/Employees('e0011111-1111-1111-1111-111111111111')/capmService.getAnnualSalary()
+
+###
+
+### Team Size
+GET {{host}}/Employees('e0011111-1111-1111-1111-111111111111')/capmService.getTeamSize()
+
+###
+
+### Get Manager
+GET {{host}}/Employees('e0055555-5555-5555-5555-555555555555')/capmService.getManager()
+
+###
+
+### Salary Breakup
+GET {{host}}/Employees('e0011111-1111-1111-1111-111111111111')/capmService.getSalaryBreakup()
+
+##################################################
+# EMPLOYEE BOUND ACTIONS
+##################################################
+
+### Promote Employee
+POST {{host}}/Employees('e0055555-5555-5555-5555-555555555555')/capmService.promote
+Content-Type: application/json
+
+{
+  "newDesignation": "LEAD"
+}
+
+###
+
+### Transfer Department
+POST {{host}}/Employees('e0055555-5555-5555-5555-555555555555')/capmService.transferDepartment
+Content-Type: application/json
+
+{
+  "departmentId": "d0022222-2222-2222-2222-222222222222"
+}
+
+###
+
+### Assign Manager
+POST {{host}}/Employees('e0055555-5555-5555-5555-555555555555')/capmService.assignManager
+Content-Type: application/json
+
+{
+  "managerId":"e0022222-2222-2222-2222-222222222222"
+}
+
+##################################################
+# DEPARTMENT BOUND FUNCTION
+##################################################
+
+### Department Employee Count
+GET {{host}}/Departments('d0011111-1111-1111-1111-111111111111')/capmService.getEmployeeCount()
+
+##################################################
+# DEPARTMENT BOUND ACTION
+##################################################
+
+### Allocate Budget
+POST {{host}}/Departments('d0011111-1111-1111-1111-111111111111')/capmService.allocateBudget
+Content-Type: application/json
+
+{
+  "amount": 1000000
+}
+
+##################################################
+# PROJECT BOUND FUNCTION
+##################################################
+
+### Project Cost
+GET {{host}}/Projects('p001')/capmService.getProjectCost()
+
+##################################################
+# PROJECT BOUND ACTION
+##################################################
+
+### Change Project Manager
+POST {{host}}/Projects('p001')/capmService.changeManager
+Content-Type: application/json
+
+{
+  "managerId":"e0022222-2222-2222-2222-222222222222"
+}
+
+###
+
+### Close Project (Bound)
+POST {{host}}/Projects('p001')/capmService.closeProject
+Content-Type: application/json
+
+{}

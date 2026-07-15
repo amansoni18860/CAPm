@@ -1,0 +1,12 @@
+ID,locale,degree,institute
+ed001,en,MBA,IIM Bangalore
+ed001,de,MBA,IIM Bangalore
+ed001,fr,MBA,IIM Bangalore
+
+ed002,en,MBA,IIM Ahmedabad
+ed002,de,MBA,IIM Ahmedabad
+ed002,fr,MBA,IIM Ahmedabad
+
+ed003,en,Master of Commerce,Mumbai University
+ed003,de,Master Handel,Mumbai Universitat
+ed003,fr,Master Commerce,Universite de Mumbai

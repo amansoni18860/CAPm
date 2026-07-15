@@ -1,0 +1,173 @@
+@host=http://localhost:4004/odata/v4/capm
+
+##################################################
+# ASSOCIATIONS
+##################################################
+
+### Employee -> Department
+GET {{host}}/Employees?$expand=department
+
+### Employee -> Manager
+GET {{host}}/Employees?$expand=manager
+
+### Employee -> Department + Manager
+GET {{host}}/Employees?$expand=department,manager
+
+### Department -> Head Employee
+GET {{host}}/Departments?$expand=headEmployee
+
+### Department -> Employees
+GET {{host}}/Departments?$expand=employees
+
+### Department -> Projects
+GET {{host}}/Departments?$expand=projects
+
+### Department -> Head Employee + Employees
+GET {{host}}/Departments?$expand=headEmployee,employees
+
+### Department -> Employees + Projects
+GET {{host}}/Departments?$expand=employees,projects
+
+### Project -> Department
+GET {{host}}/Projects?$expand=department
+
+### Project -> Project Manager
+GET {{host}}/Projects?$expand=projectManager
+
+### Project -> Department + Manager
+GET {{host}}/Projects?$expand=department,projectManager
+
+### Asset -> Assigned Employee
+GET {{host}}/Assets?$expand=assignedTo
+
+### Leave -> Employee
+GET {{host}}/Leaves?$expand=employee
+
+### Leave -> Approver
+GET {{host}}/Leaves?$expand=approvedBy
+
+### Leave -> Employee + Approver
+GET {{host}}/Leaves?$expand=employee,approvedBy
+
+### Payroll -> Employee
+GET {{host}}/Payrolls?$expand=employee
+
+##################################################
+# SELF ASSOCIATION
+##################################################
+
+### Employee -> Manager -> Reportees
+GET {{host}}/Employees?$expand=manager,reportees
+
+### Aman With Reportees
+GET {{host}}/Employees('e0011111-1111-1111-1111-111111111111')?$expand=reportees
+
+### Priya With Reportees
+GET {{host}}/Employees('e0022222-2222-2222-2222-222222222222')?$expand=reportees
+
+### Rahul With Reportees
+GET {{host}}/Employees('e0033333-3333-3333-3333-333333333333')?$expand=reportees
+
+### Neha With Reportees
+GET {{host}}/Employees('e0044444-4444-4444-4444-444444444444')?$expand=reportees
+
+##################################################
+# COMPOSITIONS
+##################################################
+
+### Employee -> Emergency Contacts
+GET {{host}}/Employees?$expand=emergencyContacts
+
+### Employee -> Educations
+GET {{host}}/Employees?$expand=educations
+
+### Employee -> Emergency Contacts + Educations
+GET {{host}}/Employees?$expand=emergencyContacts,educations
+
+### Payroll -> Payroll Components
+GET {{host}}/Payrolls?$expand=components
+
+### Leave -> Approval History
+GET {{host}}/Leaves?$expand=approvalHistory
+
+### Asset -> Maintenance History
+GET {{host}}/Assets?$expand=maintenanceHistory
+
+##################################################
+# DEEP EXPANDS
+##################################################
+
+### Employee Complete Profile
+GET {{host}}/Employees?$expand=department,manager,assets,leaves,payrolls,emergencyContacts,educations
+
+### Department Complete View
+GET {{host}}/Departments?$expand=headEmployee,employees,projects
+
+### Project Complete View
+GET {{host}}/Projects?$expand=department,projectManager
+
+### Asset Complete View
+GET {{host}}/Assets?$expand=assignedTo,maintenanceHistory
+
+### Leave Complete View
+GET {{host}}/Leaves?$expand=employee,approvedBy,approvalHistory
+
+### Payroll Complete View
+GET {{host}}/Payrolls?$expand=employee,components
+
+##################################################
+# FILTER BY ASSOCIATIONS
+##################################################
+
+### Employees Under Aman
+GET {{host}}/Employees?$filter=manager_ID eq 'e0011111-1111-1111-1111-111111111111'
+
+### Employees In IT
+GET {{host}}/Employees?$filter=department_ID eq 'd0011111-1111-1111-1111-111111111111'
+
+### Projects Of IT Department
+GET {{host}}/Projects?$filter=department_ID eq 'd0011111-1111-1111-1111-111111111111'
+
+### Projects Managed By Aman
+GET {{host}}/Projects?$filter=projectManager_ID eq 'e0011111-1111-1111-1111-111111111111'
+
+### Payroll Of Aman
+GET {{host}}/Payrolls?$filter=employee_ID eq 'e0011111-1111-1111-1111-111111111111'
+
+### Leaves Of Karan
+GET {{host}}/Leaves?$filter=employee_ID eq 'e0055555-5555-5555-5555-555555555555'
+
+### Assets Assigned To Karan
+GET {{host}}/Assets?$filter=assignedTo_ID eq 'e0055555-5555-5555-5555-555555555555'
+
+##################################################
+# SPECIFIC NAVIGATION TESTS
+##################################################
+
+### Department With Employees And Projects
+GET {{host}}/Departments('d0011111-1111-1111-1111-111111111111')?$expand=employees,projects
+
+### Employee Full Data
+GET {{host}}/Employees('e0011111-1111-1111-1111-111111111111')?$expand=department,reportees,assets,leaves,payrolls,emergencyContacts,educations
+
+### Payroll With Components
+GET {{host}}/Payrolls('pay001')?$expand=components
+
+### Leave With Approval History
+GET {{host}}/Leaves('leave001')?$expand=approvalHistory
+
+### Asset With Maintenance History
+GET {{host}}/Assets('asset001')?$expand=maintenanceHistory
+
+##################################################
+# TEMPORAL PROJECT TESTS
+##################################################
+
+### Current Projects
+GET {{host}}/Projects?$filter=validTo gt 2026-01-01T00:00:00Z
+
+### Projects Ordered By validFrom
+GET {{host}}/Projects?$orderby=validFrom desc
+
+### Projects Ordered By validTo
+GET {{host}}/Projects?$orderby=validTo desc

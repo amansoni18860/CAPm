@@ -1,0 +1,12 @@
+ID,locale,serviceProvider,remarks
+am001,en,Dell Service Center,Annual maintenance
+am001,de,Dell Service Center,Jahrliche Wartung
+am001,fr,Centre de Service Dell,Maintenance annuelle
+
+am002,en,Dell Service Center,Battery check
+am002,de,Dell Service Center,Batterieprufung
+am002,fr,Centre de Service Dell,Verification de la batterie
+
+am003,en,Apple Care,Keyboard replacement
+am003,de,Apple Care,Tastatur Austausch
+am003,fr,Apple Care,Remplacement du clavier

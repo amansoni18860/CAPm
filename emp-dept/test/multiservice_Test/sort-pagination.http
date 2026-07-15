@@ -1,0 +1,25 @@
+@host=http://localhost:4004/odata/v4
+
+### Employees By Salary Desc
+GET {{host}}/Employee/Employees?$orderby=salary desc
+
+### Employees By Salary Asc
+GET {{host}}/Employee/Employees?$orderby=salary asc
+
+### Employees By Age Desc
+GET {{host}}/Employee/Employees?$orderby=age desc
+
+### Top 3 Employees
+GET {{host}}/Employee/Employees?$top=3
+
+### Next 3 Employees
+GET {{host}}/Employee/Employees?$top=3&$skip=3
+
+### Top 5 Payroll Records
+GET {{host}}/Payroll/Payrolls?$orderby=netSalary desc&$top=5
+
+### Projects By Budget
+GET {{host}}/Project/Projects?$orderby=budget desc
+
+### Projects By Team Size
+GET {{host}}/Project/Projects?$orderby=teamSize desc

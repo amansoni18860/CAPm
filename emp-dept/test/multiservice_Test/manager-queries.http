@@ -1,0 +1,16 @@
+@host=http://localhost:4004/odata/v4
+
+### Employees Reporting To Aman
+GET {{host}}/Employee/Employees?$filter=managerId eq 'e0011111-1111-1111-1111-111111111111'
+
+### Employees Reporting To Priya
+GET {{host}}/Employee/Employees?$filter=managerId eq 'e0022222-2222-2222-2222-222222222222'
+
+### Employees Reporting To Rahul
+GET {{host}}/Employee/Employees?$filter=managerId eq 'e0033333-3333-3333-3333-333333333333'
+
+### Employees Reporting To Neha
+GET {{host}}/Employee/Employees?$filter=managerId eq 'e0044444-4444-4444-4444-444444444444'
+
+### Employee Count Under Aman
+GET {{host}}/Employee/Employees/$count?$filter=managerId eq 'e0011111-1111-1111-1111-111111111111'

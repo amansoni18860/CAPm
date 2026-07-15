@@ -1,0 +1,12 @@
+ID,locale,action,remarks
+la001,en,APPROVED,Approved by reporting manager
+la001,de,GENEHMIGT,Vom Manager genehmigt
+la001,fr,APPROUVE,Approuve par le responsable
+
+la002,en,APPROVED,Medical documents verified
+la002,de,GENEHMIGT,Medizinische Dokumente gepruft
+la002,fr,APPROUVE,Documents medicaux verifies
+
+la004,en,PENDING,Awaiting approval
+la004,de,AUSSTEHEND,Wartet auf Genehmigung
+la004,fr,EN ATTENTE,En attente d approbation
